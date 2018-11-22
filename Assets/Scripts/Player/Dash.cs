@@ -15,11 +15,15 @@ namespace KingdomGates
         public float currentCooldown;
         PlayerController controller;
 
+        ParticleSystem dashParticle;
+
         public bool onCoolDown = false;
 
         private void Start()
         {
             controller = GetComponent<PlayerController>();
+
+            dashParticle = GameObject.Find("Dash").GetComponent<ParticleSystem>();
         }
 
         private void Update()
@@ -31,6 +35,7 @@ namespace KingdomGates
                 // Enable dash
                 dash = true;
 
+                dashParticle.Play();
                 
                 currentCooldown = dashCooldown;
                 Debug.Log(currentCooldown.ToString() + " || " + dashCooldown.ToString());
